@@ -33,4 +33,5 @@ export interface ScanHistory {
   plantName: string;
   disease?: string;
   imageUrl: string;
+  isNewScan?: boolean;
 }
