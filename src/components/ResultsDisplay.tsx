@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { AlertTriangle, CheckCircle2, Info } from 'lucide-react';
+import { AlertTriangle, CheckCircle2, Info, ExternalLink, Shield } from 'lucide-react';
 import { Disease, Pesticide } from '@/types';
 import { getAnimationDelay } from '@/utils/animations';
 import RecommendationCard from './RecommendationCard';
@@ -34,54 +34,60 @@ const ResultsDisplay = ({ diseases, pesticides, isVisible }: ResultsDisplayProps
   const confidencePercentage = Math.round(mainDisease.confidence * 100);
   
   return (
-    <section id="results" className="section-padding px-6">
+    <section id="results" className="section-padding px-6 gradient-hero">
       <div className="container mx-auto">
         <div className="max-w-4xl mx-auto">
           <div className="mb-10 text-center animate-fade-up">
-            <h2 className="text-2xl md:text-3xl font-semibold mb-4">
+            <h2 className="section-title">
               Diagnosis Results
             </h2>
-            <p className="text-foreground/70">
+            <p className="text-foreground/70 max-w-2xl mx-auto">
               Our AI has analyzed your plant image and identified the following
             </p>
           </div>
           
           <div className="result-container mb-12 animate-scale-in">
-            <div className="flex items-center gap-2 mb-4">
-              <CheckCircle2 className="h-5 w-5 text-leaf" />
-              <h3 className="text-xl font-medium">Disease Detected</h3>
+            <div className="flex items-center gap-3 mb-5 pb-4 border-b border-border/30">
+              <div className="w-10 h-10 rounded-full bg-leaf/10 flex items-center justify-center">
+                <CheckCircle2 className="h-5 w-5 text-leaf" />
+              </div>
+              <h3 className="text-2xl font-medium font-playfair">Disease Identified</h3>
             </div>
             
-            <div className="flex flex-col md:flex-row md:items-center gap-6 mb-6">
+            <div className="flex flex-col md:flex-row md:items-start gap-8 mb-6">
               <div className="flex-1">
                 <div className="mb-4">
-                  <h4 className="text-lg font-medium text-foreground/90 mb-1">
+                  <h4 className="text-xl font-semibold text-foreground/90 mb-1">
                     {mainDisease.name}
                   </h4>
-                  <p className="text-sm text-foreground/60 italic mb-2">
+                  <p className="text-sm text-foreground/60 italic mb-3">
                     {mainDisease.scientificName}
                   </p>
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className={`text-xs font-medium px-2 py-1 rounded-full ${severityBg} ${severityColor}`}>
-                      {mainDisease.severity.charAt(0).toUpperCase() + mainDisease.severity.slice(1)} Severity
+                  <div className="flex flex-wrap items-center gap-2 mb-4">
+                    <div className={`text-xs font-medium px-3 py-1.5 rounded-full ${severityBg} ${severityColor} flex items-center gap-1.5`}>
+                      <Shield className="h-3.5 w-3.5" />
+                      <span>{mainDisease.severity.charAt(0).toUpperCase() + mainDisease.severity.slice(1)} Severity</span>
                     </div>
-                    <div className="text-xs font-medium px-2 py-1 rounded-full bg-secondary">
-                      {confidencePercentage}% Confidence
+                    <div className="text-xs font-medium px-3 py-1.5 rounded-full bg-secondary flex items-center gap-1.5">
+                      <div className="w-3.5 h-3.5 rounded-full border-2 border-current flex items-center justify-center">
+                        <span className="text-[8px]">%</span>
+                      </div>
+                      <span>{confidencePercentage}% Confidence</span>
                     </div>
                   </div>
                 </div>
                 
-                <p className="text-foreground/80 mb-4">
+                <p className="text-foreground/80 mb-5 text-balance leading-relaxed">
                   {mainDisease.description}
                 </p>
               </div>
               
-              <div className="md:w-1/3 bg-secondary rounded-lg p-4">
-                <h4 className="text-sm font-medium mb-2 flex items-center gap-1">
+              <div className="md:w-1/3 bg-secondary/70 rounded-lg p-5">
+                <h4 className="text-sm font-semibold mb-3 flex items-center gap-1.5">
                   <AlertTriangle className="h-4 w-4 text-amber-500" />
                   <span>Common Symptoms</span>
                 </h4>
-                <ul className="space-y-2">
+                <ul className="space-y-2.5">
                   {mainDisease.symptoms.map((symptom, index) => (
                     <li key={index} className="text-sm text-foreground/80 flex items-start gap-2">
                       <span className="text-leaf mt-1">•</span>
@@ -92,22 +98,23 @@ const ResultsDisplay = ({ diseases, pesticides, isVisible }: ResultsDisplayProps
               </div>
             </div>
             
-            <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg text-sm">
+            <div className="flex items-center justify-between p-4 bg-blue-50 rounded-lg text-sm mt-6">
               <div className="flex items-center gap-2">
                 <Info className="h-4 w-4 text-blue-500" />
                 <span className="text-blue-700">Looking for more detailed information?</span>
               </div>
-              <button className="text-blue-600 hover:text-blue-800 font-medium underline underline-offset-2">
-                Learn More
+              <button className="text-blue-600 hover:text-blue-800 font-medium flex items-center gap-1.5 transition-colors">
+                <span>Learn More</span>
+                <ExternalLink className="h-3.5 w-3.5" />
               </button>
             </div>
           </div>
           
           <div className="mb-8 text-center animate-fade-up" style={{ animationDelay: '200ms' }}>
-            <h2 className="text-2xl md:text-3xl font-semibold mb-4">
+            <h2 className="section-title">
               Recommended Treatments
             </h2>
-            <p className="text-foreground/70">
+            <p className="text-foreground/70 max-w-2xl mx-auto">
               Based on the diagnosis, here are the most effective treatments
             </p>
           </div>
@@ -123,7 +130,7 @@ const ResultsDisplay = ({ diseases, pesticides, isVisible }: ResultsDisplayProps
           </div>
           
           <div className="text-center animate-fade-up" style={{ animationDelay: '400ms' }}>
-            <button className="bg-secondary text-foreground/80 rounded-full px-8 py-3 font-medium hover:bg-secondary/70 transition-all">
+            <button className="bg-secondary hover:bg-secondary/60 text-foreground/80 rounded-full px-8 py-3.5 font-medium transition-all shadow-sm hover:shadow">
               View All Treatment Options
             </button>
           </div>

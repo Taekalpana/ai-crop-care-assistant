@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -78,12 +78,16 @@
     @apply bg-background text-foreground overflow-x-hidden;
   }
   
-  h1, h2, h3, h4, h5, h6 {
+  h1 {
+    @apply font-playfair tracking-tight;
+  }
+  
+  h2, h3, h4, h5, h6 {
     @apply font-medium tracking-tight;
   }
   
   .glass-card {
-    @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-sm;
+    @apply bg-white/90 backdrop-blur-md border border-white/40 shadow-sm;
   }
   
   .content-transition {
@@ -91,15 +95,23 @@
   }
   
   .section-padding {
-    @apply py-12 md:py-20;
+    @apply py-16 md:py-24;
+  }
+  
+  .section-title {
+    @apply text-3xl md:text-4xl font-semibold mb-6 font-playfair leading-tight;
+  }
+  
+  .section-subtitle {
+    @apply text-lg text-foreground/70 mb-12 max-w-2xl mx-auto;
   }
   
   .upload-zone {
-    @apply border-2 border-dashed rounded-xl p-6 transition-all duration-300 bg-secondary/50 hover:bg-secondary cursor-pointer;
+    @apply border-2 border-dashed rounded-xl p-6 transition-all duration-300 bg-secondary/70 hover:bg-secondary cursor-pointer;
   }
   
   .result-container {
-    @apply glass-card rounded-xl p-6 shadow-lg;
+    @apply glass-card rounded-xl p-8 shadow-lg;
   }
   
   .slide-enter {
@@ -148,7 +160,7 @@
 }
 
 .image-container:hover img {
-  transform: scale(1.03);
+  transform: scale(1.05);
 }
 
 /* Button animations */
@@ -171,4 +183,24 @@
 
 .btn-animated:hover:after {
   transform: translateX(0);
+}
+
+/* Card styles */
+.feature-card {
+  @apply bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-border/30;
+}
+
+/* Gradient backgrounds */
+.gradient-green {
+  background: linear-gradient(90deg, hsla(139, 70%, 75%, 1) 0%, hsla(63, 90%, 76%, 1) 100%);
+}
+
+.gradient-hero {
+  background: radial-gradient(circle at top right, rgba(74, 159, 65, 0.1) 0%, rgba(255, 255, 255, 0) 60%),
+              radial-gradient(circle at bottom left, rgba(74, 159, 65, 0.1) 0%, rgba(255, 255, 255, 0) 60%);
+}
+
+/* Text styles */
+.text-balance {
+  text-wrap: balance;
 }

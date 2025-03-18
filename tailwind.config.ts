@@ -25,6 +25,7 @@ export default {
 		extend: {
 			fontFamily: {
 				sans: ['Inter', 'system-ui', 'sans-serif'],
+				playfair: ['Playfair Display', 'serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -110,6 +111,10 @@ export default {
 					'0%, 100%': { transform: 'translateY(0)' },
 					'50%': { transform: 'translateY(-8px)' },
 				},
+				'shimmer': {
+					'0%': { backgroundPosition: '-500px 0' },
+					'100%': { backgroundPosition: '500px 0' },
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
@@ -119,6 +124,7 @@ export default {
 				'pulse-subtle': 'pulse-subtle 3s infinite ease-in-out',
 				'scale-in': 'scale-in 0.4s ease-out',
 				'float': 'float 6s infinite ease-in-out',
+				'shimmer': 'shimmer 2s infinite linear',
 			},
 			backdropFilter: {
 				'none': 'none',
