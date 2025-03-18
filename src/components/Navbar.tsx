@@ -39,9 +39,6 @@ const Navbar = () => {
             <a href="#history" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
               History
             </a>
-            <a href="#about" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
-              About
-            </a>
           </nav>
           
           <div>

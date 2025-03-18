@@ -112,10 +112,10 @@ const ResultsDisplay = ({ diseases, pesticides, isVisible }: ResultsDisplayProps
           
           <div className="mb-8 text-center animate-fade-up" style={{ animationDelay: '200ms' }}>
             <h2 className="section-title">
-              Recommended Treatments
+              Pesticides Recommendation
             </h2>
             <p className="text-foreground/70 max-w-2xl mx-auto">
-              Based on the diagnosis, here are the most effective treatments
+              Based on the diagnosis, here are the most effective pesticides
             </p>
           </div>
           
@@ -131,7 +131,7 @@ const ResultsDisplay = ({ diseases, pesticides, isVisible }: ResultsDisplayProps
           
           <div className="text-center animate-fade-up" style={{ animationDelay: '400ms' }}>
             <button className="bg-secondary hover:bg-secondary/60 text-foreground/80 rounded-full px-8 py-3.5 font-medium transition-all shadow-sm hover:shadow">
-              View All Treatment Options
+              View All Pesticide Options
             </button>
           </div>
         </div>

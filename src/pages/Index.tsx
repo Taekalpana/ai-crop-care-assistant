@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
@@ -5,7 +6,6 @@ import UploadSection from '@/components/UploadSection';
 import ResultsDisplay from '@/components/ResultsDisplay';
 import HistoryItem from '@/components/HistoryItem';
 import Footer from '@/components/Footer';
-import { getMockHistory } from '@/utils/animations';
 import { Disease, Pesticide, ScanHistory } from '@/types';
 import { getAnimationDelay } from '@/utils/animations';
 
@@ -101,60 +101,6 @@ const Index = () => {
           </div>
         </section>
       )}
-      
-      <section id="about" className="section-padding px-6">
-        <div className="container mx-auto">
-          <div className="max-w-3xl mx-auto text-center animate-fade-up">
-            <h2 className="text-2xl md:text-3xl font-semibold mb-4">
-              How PlantScan Works
-            </h2>
-            <p className="text-foreground/70 mb-12">
-              Our AI-powered technology analyzes your plant images with high accuracy
-            </p>
-            
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="flex flex-col items-center">
-                <div className="w-14 h-14 rounded-full bg-leaf/10 flex items-center justify-center mb-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-leaf">
-                    <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
-                    <line x1="4" x2="4" y1="22" y2="15" />
-                  </svg>
-                </div>
-                <h3 className="font-medium mb-2">Upload</h3>
-                <p className="text-sm text-foreground/70">
-                  Take a photo or upload an image of your plant's affected area
-                </p>
-              </div>
-              
-              <div className="flex flex-col items-center" style={{ animationDelay: '100ms' }}>
-                <div className="w-14 h-14 rounded-full bg-leaf/10 flex items-center justify-center mb-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-leaf">
-                    <circle cx="12" cy="12" r="10" />
-                    <path d="M12 16v-4" />
-                    <path d="M12 8h.01" />
-                  </svg>
-                </div>
-                <h3 className="font-medium mb-2">Analyze</h3>
-                <p className="text-sm text-foreground/70">
-                  Our AI analyzes the image to identify diseases with high accuracy
-                </p>
-              </div>
-              
-              <div className="flex flex-col items-center" style={{ animationDelay: '200ms' }}>
-                <div className="w-14 h-14 rounded-full bg-leaf/10 flex items-center justify-center mb-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-leaf">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
-                  </svg>
-                </div>
-                <h3 className="font-medium mb-2">Recommend</h3>
-                <p className="text-sm text-foreground/70">
-                  Get personalized treatment recommendations based on diagnosis
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
       
       <Footer />
     </div>

@@ -10,6 +10,13 @@ const Footer = () => {
             <div className="flex items-center space-x-2 mb-4">
               <Leaf className="h-5 w-5 text-leaf" />
               <span className="text-lg font-medium">PlantScan</span>
+              <div className="w-8 h-8 rounded-full overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1518495973542-4542c06a5843" 
+                  alt="Crop" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
             <p className="text-sm text-foreground/70 mb-4">
               AI-powered plant disease detection and treatment recommendations to help you grow healthier plants.
@@ -97,7 +104,7 @@ const Footer = () => {
         
         <div className="border-t border-border/50 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-foreground/60 mb-4 md:mb-0">
-            &copy; {new Date().getFullYear()} PlantScan. All rights reserved.
+            PlantScan - Helping you grow healthier plants
           </p>
           <div className="flex space-x-4 text-sm">
             <a href="#" className="text-foreground/60 hover:text-foreground transition-colors">
