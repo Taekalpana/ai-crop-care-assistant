@@ -1,11 +1,9 @@
-
 import { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import UploadSection from '@/components/UploadSection';
 import ResultsDisplay from '@/components/ResultsDisplay';
 import HistoryItem from '@/components/HistoryItem';
-import Footer from '@/components/Footer';
 import { Disease, Pesticide, ScanHistory } from '@/types';
 import { getAnimationDelay } from '@/utils/animations';
 
@@ -101,8 +99,6 @@ const Index = () => {
           </div>
         </section>
       )}
-      
-      <Footer />
     </div>
   );
 };

@@ -16,6 +16,16 @@ const Hero = () => {
         <div className="absolute w-[400px] h-[400px] rounded-full bg-leaf/5 blur-3xl bottom-1/4 -left-1/4 animate-pulse-subtle" style={{ animationDelay: '1s' }}></div>
       </div>
       
+      {/* Plant image at the start */}
+      <div className="absolute top-0 left-0 w-full h-64 md:h-80 overflow-hidden z-0">
+        <img 
+          src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86" 
+          alt="Beautiful healthy plants" 
+          className="w-full h-full object-cover object-center opacity-30"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background"></div>
+      </div>
+      
       <div className="container mx-auto relative z-10">
         <div className="max-w-3xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white/80 backdrop-blur rounded-full shadow-sm animate-fade-in">
