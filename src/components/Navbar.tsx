@@ -5,6 +5,7 @@ import { Leaf } from 'lucide-react';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [language, setLanguage] = useState('en');
   
   useEffect(() => {
     const handleScroll = () => {
@@ -14,6 +15,11 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+  
+  const handleLanguageChange = (lang: string) => {
+    setLanguage(lang);
+    // In a real app, this would trigger language changes throughout the app
+  };
   
   return (
     <header 
@@ -26,7 +32,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <Leaf className="h-6 w-6 text-leaf animate-float" />
-            <span className="text-xl font-medium">PlantScan</span>
+            <span className="text-xl font-medium">GreenVita</span>
           </div>
           
           <nav className="hidden md:flex items-center space-x-8">
@@ -36,9 +42,26 @@ const Navbar = () => {
             <a href="#scanner" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
               Scanner
             </a>
-            <a href="#history" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
-              History
-            </a>
+            <div className="flex items-center space-x-2 ml-4">
+              <button 
+                onClick={() => handleLanguageChange('en')}
+                className={`text-xs px-2 py-1 rounded ${language === 'en' ? 'bg-primary text-white' : 'bg-secondary/50'}`}
+              >
+                EN
+              </button>
+              <button 
+                onClick={() => handleLanguageChange('es')}
+                className={`text-xs px-2 py-1 rounded ${language === 'es' ? 'bg-primary text-white' : 'bg-secondary/50'}`}
+              >
+                ES
+              </button>
+              <button 
+                onClick={() => handleLanguageChange('fr')}
+                className={`text-xs px-2 py-1 rounded ${language === 'fr' ? 'bg-primary text-white' : 'bg-secondary/50'}`}
+              >
+                FR
+              </button>
+            </div>
           </nav>
           
           <div>

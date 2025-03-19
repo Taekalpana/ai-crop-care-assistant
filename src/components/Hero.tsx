@@ -37,11 +37,11 @@ const Hero = () => {
           
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight mb-6 animate-fade-up font-playfair">
             Identify Plant Diseases & Get <br className="hidden md:block" />
-            <span className="text-leaf">Treatment Recommendations</span>
+            <span className="text-leaf">Pesticide Recommendations</span>
           </h1>
           
           <p className="text-lg md:text-xl text-foreground/80 mb-10 animate-fade-up max-w-2xl mx-auto" style={{ animationDelay: '100ms' }}>
-            Upload a photo of your plant and our AI will instantly identify diseases and suggest the most effective treatment options.
+            Upload a photo of your plant and GreenVita AI will instantly identify diseases and suggest the most effective pesticide options.
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up" style={{ animationDelay: '200ms' }}>

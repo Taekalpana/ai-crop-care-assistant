@@ -1,6 +1,6 @@
 
 import { useState, useRef } from 'react';
-import { Upload, Camera, Image, X } from 'lucide-react';
+import { Upload, Camera, Image, X, SwitchCamera } from 'lucide-react';
 import { getMockResults } from '@/utils/animations';
 
 interface UploadSectionProps {
@@ -12,7 +12,13 @@ const UploadSection = ({ onResultsReady }: UploadSectionProps) => {
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
   const [uploading, setUploading] = useState(false);
   const [analyzing, setAnalyzing] = useState(false);
+  const [cameraActive, setCameraActive] = useState(false);
+  const [facingMode, setFacingMode] = useState<'user' | 'environment'>('environment');
+  
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const streamRef = useRef<MediaStream | null>(null);
   
   const handleDrag = (e: React.DragEvent) => {
     e.preventDefault();
@@ -64,6 +70,69 @@ const UploadSection = ({ onResultsReady }: UploadSectionProps) => {
     if (fileInputRef.current) {
       fileInputRef.current.value = '';
     }
+    
+    // Also stop camera if it's active
+    stopCamera();
+  };
+  
+  const startCamera = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode },
+        audio: false
+      });
+      
+      if (videoRef.current) {
+        videoRef.current.srcObject = stream;
+        streamRef.current = stream;
+        setCameraActive(true);
+        setUploadedImage(null);
+      }
+    } catch (error) {
+      console.error('Error accessing camera:', error);
+      alert('Could not access camera. Please ensure you have granted camera permissions.');
+    }
+  };
+  
+  const stopCamera = () => {
+    if (streamRef.current) {
+      streamRef.current.getTracks().forEach(track => track.stop());
+      streamRef.current = null;
+    }
+    
+    if (videoRef.current) {
+      videoRef.current.srcObject = null;
+    }
+    
+    setCameraActive(false);
+  };
+  
+  const switchCamera = () => {
+    setFacingMode(prevMode => (prevMode === 'user' ? 'environment' : 'user'));
+    if (cameraActive) {
+      stopCamera();
+      setTimeout(() => {
+        startCamera();
+      }, 300);
+    }
+  };
+  
+  const capturePhoto = () => {
+    if (videoRef.current && canvasRef.current) {
+      const video = videoRef.current;
+      const canvas = canvasRef.current;
+      const context = canvas.getContext('2d');
+      
+      if (context) {
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        
+        const imageUrl = canvas.toDataURL('image/png');
+        setUploadedImage(imageUrl);
+        stopCamera();
+      }
+    }
   };
 
   const analyzeImage = () => {
@@ -90,7 +159,7 @@ const UploadSection = ({ onResultsReady }: UploadSectionProps) => {
             </p>
           </div>
           
-          {!uploadedImage ? (
+          {!uploadedImage && !cameraActive ? (
             <div 
               className={`upload-zone animate-fade-up ${dragActive ? 'border-primary bg-primary/5' : ''}`}
               onDragEnter={handleDrag}
@@ -130,7 +199,7 @@ const UploadSection = ({ onResultsReady }: UploadSectionProps) => {
                     className="flex items-center gap-2 px-4 py-2 rounded-lg bg-secondary hover:bg-secondary/70 transition-colors text-sm"
                     onClick={(e) => {
                       e.stopPropagation();
-                      // In a real app, this would trigger the device camera
+                      startCamera();
                     }}
                   >
                     <Camera className="h-4 w-4" />
@@ -138,6 +207,43 @@ const UploadSection = ({ onResultsReady }: UploadSectionProps) => {
                   </button>
                 </div>
               </div>
+            </div>
+          ) : cameraActive ? (
+            <div className="animate-scale-in">
+              <div className="relative overflow-hidden rounded-xl shadow-lg">
+                <video 
+                  ref={videoRef} 
+                  autoPlay 
+                  playsInline
+                  className="w-full h-auto"
+                  style={{ maxHeight: '70vh' }}
+                />
+                
+                <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-4">
+                  <button 
+                    onClick={capturePhoto}
+                    className="p-4 rounded-full bg-primary text-white shadow-lg hover:bg-primary/90 transition-colors"
+                  >
+                    <Camera className="h-6 w-6" />
+                  </button>
+                  
+                  <button 
+                    onClick={switchCamera}
+                    className="p-4 rounded-full bg-secondary text-foreground shadow-lg hover:bg-secondary/90 transition-colors"
+                  >
+                    <SwitchCamera className="h-6 w-6" />
+                  </button>
+                  
+                  <button 
+                    onClick={stopCamera}
+                    className="p-4 rounded-full bg-secondary text-foreground shadow-lg hover:bg-secondary/90 transition-colors"
+                  >
+                    <X className="h-6 w-6" />
+                  </button>
+                </div>
+              </div>
+              
+              <canvas ref={canvasRef} className="hidden" />
             </div>
           ) : (
             <div className="animate-scale-in">
