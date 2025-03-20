@@ -63,6 +63,7 @@ const Navbar = () => {
                   <SelectItem value="bn">বাংলা (Bengali)</SelectItem>
                   <SelectItem value="ta">தமிழ் (Tamil)</SelectItem>
                   <SelectItem value="te">తెలుగు (Telugu)</SelectItem>
+                  <SelectItem value="kn">ಕನ್ನಡ (Kannada)</SelectItem>
                 </SelectContent>
               </Select>
             </div>

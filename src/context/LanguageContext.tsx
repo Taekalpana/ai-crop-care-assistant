@@ -5,8 +5,9 @@ import { hindi } from '@/translations/hindi';
 import { tamil } from '@/translations/tamil';
 import { telugu } from '@/translations/telugu';
 import { bengali } from '@/translations/bengali';
+import { kannada } from '@/translations/kannada';
 
-export type Language = 'en' | 'hi' | 'ta' | 'te' | 'bn';
+export type Language = 'en' | 'hi' | 'ta' | 'te' | 'bn' | 'kn';
 
 const translations = {
   en: english,
@@ -14,6 +15,7 @@ const translations = {
   ta: tamil,
   te: telugu,
   bn: bengali,
+  kn: kannada,
 };
 
 type TranslationsType = typeof english;

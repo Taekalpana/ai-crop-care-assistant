@@ -23,4 +23,11 @@ export const english = {
   uploadPhoto: "Upload a Photo",
   howToTakePhotos: "How to Take Good Plant Photos",
   photoTips: "For best results, follow these tips:",
+  closeup: "Closeup View",
+  goodLighting: "Good Lighting",
+  multipleAngles: "Multiple Angles",
+  step1: "Step 1: Take or upload a clear photo",
+  step2: "Step 2: AI analyzes your photo",
+  step3: "Step 3: Get disease identification",
+  step4: "Step 4: Receive pesticide recommendations"
 };

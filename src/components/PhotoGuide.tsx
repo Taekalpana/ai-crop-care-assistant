@@ -1,17 +1,20 @@
 
 import { Camera, Check, RotateCw } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 const PhotoGuide = () => {
+  const { t } = useLanguage();
+  
   return (
     <section className="bg-white py-12 px-6">
       <div className="container mx-auto">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-10">
             <h2 className="text-2xl md:text-3xl font-semibold mb-4">
-              How to Take the Perfect Plant Photo
+              {t('howToTakePhotos')}
             </h2>
             <p className="text-foreground/70 max-w-2xl mx-auto">
-              Follow these simple steps to get the most accurate diagnosis from GreenVita
+              {t('photoTips')}
             </p>
           </div>
           
@@ -19,12 +22,12 @@ const PhotoGuide = () => {
             <div className="bg-secondary/10 rounded-lg p-6 text-center">
               <div className="relative mb-4 mx-auto w-48 h-48 overflow-hidden rounded-lg">
                 <img 
-                  src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86"
-                  alt="Closeup shot of plant"
+                  src="https://images.unsplash.com/photo-1598512752875-344ad5f6c38e"
+                  alt="Closeup of tomato plant leaf with disease spots"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-xs py-1 px-2">
-                  Closeup View
+                  Diseased Leaf Closeup
                 </div>
               </div>
               <h3 className="font-medium mb-2">Get Close</h3>
@@ -36,8 +39,8 @@ const PhotoGuide = () => {
             <div className="bg-secondary/10 rounded-lg p-6 text-center">
               <div className="relative mb-4 mx-auto w-48 h-48 overflow-hidden rounded-lg">
                 <img 
-                  src="https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07"
-                  alt="Well-lit plant photo"
+                  src="https://images.unsplash.com/photo-1533204515132-035bc8d4128c"
+                  alt="Well-lit vegetable plant showing symptoms"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-xs py-1 px-2">
@@ -53,8 +56,8 @@ const PhotoGuide = () => {
             <div className="bg-secondary/10 rounded-lg p-6 text-center">
               <div className="relative mb-4 mx-auto w-48 h-48 overflow-hidden rounded-lg">
                 <img 
-                  src="https://images.unsplash.com/photo-1518495973542-4542c06a5843"
-                  alt="Multiple angle shots"
+                  src="https://images.unsplash.com/photo-1471193945509-9ad0617afabf"
+                  alt="Multiple vegetable plants showing different growth stages"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white text-xs py-1 px-2">
