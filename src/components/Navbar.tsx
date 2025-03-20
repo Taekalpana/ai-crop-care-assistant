@@ -1,11 +1,19 @@
 
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
-import { Leaf } from 'lucide-react';
+import { Leaf, Globe } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [language, setLanguage] = useState('en');
+  const { language, setLanguage, t } = useLanguage();
   
   useEffect(() => {
     const handleScroll = () => {
@@ -16,9 +24,8 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
   
-  const handleLanguageChange = (lang: string) => {
-    setLanguage(lang);
-    // In a real app, this would trigger language changes throughout the app
+  const handleLanguageChange = (value: string) => {
+    setLanguage(value as any);
   };
   
   return (
@@ -37,30 +44,27 @@ const Navbar = () => {
           
           <nav className="hidden md:flex items-center space-x-8">
             <a href="#" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
-              Home
+              {t('home')}
             </a>
             <a href="#scanner" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
-              Scanner
+              {t('scanner')}
             </a>
             <div className="flex items-center space-x-2 ml-4">
-              <button 
-                onClick={() => handleLanguageChange('en')}
-                className={`text-xs px-2 py-1 rounded ${language === 'en' ? 'bg-primary text-white' : 'bg-secondary/50'}`}
-              >
-                EN
-              </button>
-              <button 
-                onClick={() => handleLanguageChange('es')}
-                className={`text-xs px-2 py-1 rounded ${language === 'es' ? 'bg-primary text-white' : 'bg-secondary/50'}`}
-              >
-                ES
-              </button>
-              <button 
-                onClick={() => handleLanguageChange('fr')}
-                className={`text-xs px-2 py-1 rounded ${language === 'fr' ? 'bg-primary text-white' : 'bg-secondary/50'}`}
-              >
-                FR
-              </button>
+              <Select value={language} onValueChange={handleLanguageChange}>
+                <SelectTrigger className="w-[130px] h-8">
+                  <div className="flex items-center gap-2">
+                    <Globe className="h-4 w-4" />
+                    <SelectValue placeholder="Language" />
+                  </div>
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="en">English</SelectItem>
+                  <SelectItem value="hi">हिन्दी (Hindi)</SelectItem>
+                  <SelectItem value="bn">বাংলা (Bengali)</SelectItem>
+                  <SelectItem value="ta">தமிழ் (Tamil)</SelectItem>
+                  <SelectItem value="te">తెలుగు (Telugu)</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </nav>
           
@@ -68,7 +72,7 @@ const Navbar = () => {
             <button 
               className="bg-primary text-primary-foreground rounded-full px-4 py-2 text-sm font-medium shadow-sm hover:bg-primary/90 transition-colors"
             >
-              Get Started
+              {t('getStarted')}
             </button>
           </div>
         </div>
